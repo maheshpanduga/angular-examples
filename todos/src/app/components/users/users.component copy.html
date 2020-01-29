@@ -1,0 +1,73 @@
+<button type="button" class="btn btn-success m-1" (click) = "addUser(userDialog)">Add User</button>
+<span class="m-1"></span>
+<button type="button" class="btn btn-danger" (click) = "removeUser()">Remove User</button>
+
+<ngx-datatable #mydatatable class="bootstrap m-1"  [sortType]="'multi'"  [headerHeight]="50" [footerHeight]="40" [rowHeight]="'auto'" [rows]="rows" [columnMode]="'force'" [limit]="5" [loadingIndicator]="loadingIndicator">
+
+    <ngx-datatable-column>
+		<ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+            <div class="m-1 form-group">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input">
+                  <label class="custom-control-label" for="customCheck1"></label>
+                </div>
+              </div>
+		</ng-template>
+    </ngx-datatable-column>
+    
+	<ngx-datatable-column name="ID">
+		<ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+          {{row.ID}}
+		</ng-template>
+	</ngx-datatable-column>
+
+	<ngx-datatable-column name="User Name">
+		<ng-template ngx-datatable-cell-template let-value="UserName" let-row="row">
+			{{row.UserName}}
+		</ng-template>
+	</ngx-datatable-column>
+
+	<ngx-datatable-column name="Password">
+		<ng-template ngx-datatable-cell-template let-value="Password" let-row="row">
+			{{row.Password}}
+		</ng-template>
+	</ngx-datatable-column>
+
+</ngx-datatable>
+
+<ng-template #userDialog let-modal let-row = "row">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add User details</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">User ID</span>
+        </div>
+        <input type="text" class="form-control" readonly>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">User Name</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Enter user name">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Password</span>
+        </div>
+        <input type="password" class="form-control" placeholder="Enter Password">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn btn-success" (click)="modal.close('Save click')">Save</button>
+    <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Cancel</button>
+  </div>
+</ng-template>
